@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.Timer;
-import java.util.Random;
 import javax.swing.border.LineBorder;
 
 public class Assign08_6506021610029 extends JFrame implements ActionListener{
