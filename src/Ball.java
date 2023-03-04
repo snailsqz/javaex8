@@ -24,15 +24,15 @@ public class Ball extends JFrame{
         this.diameter = diameter;
     }
 
-    public void color(Color color){
+    public void setColor(Color color){
         this.color = color;
     }
 
-    public void direction(int direction){
+    public void setDirection(int direction){
         this.direction = direction;
     }
 
-    public void speed(int speed){
+    public void setSpeed(int speed){
         this.speed = speed;
     }
 
@@ -72,4 +72,4 @@ public class Ball extends JFrame{
         str += ", Color = " + getColor() + ", Direction = " + getDirection() + ", Speed = " + getSpeed();
         return str; 
     }
-}
+}   
