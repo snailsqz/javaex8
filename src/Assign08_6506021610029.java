@@ -127,10 +127,12 @@ public class Assign08_6506021610029 extends JFrame implements ActionListener{
     
         if(e.getSource() == Play){
             swTimer.start();
+            Play.setEnabled(false);
             start = true;
         }
         else if(e.getSource() == Stop){
             swTimer.stop();
+            Play.setEnabled(true);
             start = false;
         }
         else if(e.getSource() == toRight)
