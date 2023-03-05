@@ -11,12 +11,24 @@ public class Assign08_6506021610029 extends JFrame implements ActionListener{
     JLabel label1,label2,label3;
     Ball mBall;
     Timer swTimer;
+    
 
     public Assign08_6506021610029(){
         super("Assignment #08 Control Ball to Animation");
         Container c = getContentPane();
         c.setLayout(new FlowLayout());
+        swTimer = new Timer(60,this);
+        mBall = new Ball();
+        
+        upbutton(c);
+        ballzone(c);
+        sidebutton(c);
+        setSize(800,600);
+        setVisible(true);
 
+    }
+
+    private void upbutton(Container c) {
         Play = new JButton("Play");
         Play.addActionListener(this);
 
@@ -47,12 +59,16 @@ public class Assign08_6506021610029 extends JFrame implements ActionListener{
         panelG1.add(Play);panelG1.add(Stop);panelG1.add(label1);panelG1.add(toRight);panelG1.add(toLeft);
         panelG1.add(toTop);panelG1.add(toDown);panelG1.add(label2);panelG1.add(Exit);
         c.add(panelG1);
-
+    }
+    
+    private void ballzone(Container c) {
         panelG2 = new JPanel();
         panelG2.setPreferredSize(new Dimension(625, 450));
         panelG2.setBorder(new LineBorder(Color.RED, 1));
         c.add(panelG2);
+    }
 
+    private void sidebutton(Container c) {
         SpeedUp = new JButton("Speed Up");
         SpeedUp.addActionListener(this);
         
@@ -87,14 +103,8 @@ public class Assign08_6506021610029 extends JFrame implements ActionListener{
         panelG3.add(SpeedUp);panelG3.add(SpeedDown);panelG3.add(label3);panelG3.add(CBlack);
         panelG3.add(CRed);panelG3.add(CGreen);panelG3.add(CBlue);
         c.add(panelG3);
-
-        swTimer = new Timer(60,this);
-
-        mBall = new Ball();
-        setSize(800,600);
-        setVisible(true);
-
     }
+
     @Override
     public void actionPerformed(ActionEvent e){
     
