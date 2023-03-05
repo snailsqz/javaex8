@@ -1,3 +1,10 @@
+/*
+ * Id   : 65-060216-1002-9
+ * Name : Pawee Indulakshana
+ * Room : IT-1RA
+ * File Name : Assign08_6506021610029.java
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -7,22 +14,25 @@ import javax.swing.border.LineBorder;
 public class Assign08_6506021610029 extends JFrame implements ActionListener{
     JButton Play,Stop,toRight,toLeft,toTop,toDown,Exit;
     JButton SpeedUp,SpeedDown,CBlack,CRed,CGreen,CBlue;
-    JPanel panelG1,panelG2,panelG3;
-    JLabel label1,label2,label3;
+    JPanel panelG1,panelG2,panelG3,panelG4;
+    JLabel label1,label2,label3,Text;
     Ball mBall;
     Timer swTimer;
+    int Direction = 0;
+    boolean start = false;
     
 
     public Assign08_6506021610029(){
         super("Assignment #08 Control Ball to Animation");
         Container c = getContentPane();
         c.setLayout(new FlowLayout());
-        swTimer = new Timer(60,this);
         mBall = new Ball();
+        swTimer = new Timer(30,this);
         
         upbutton(c);
         ballzone(c);
         sidebutton(c);
+        description(c);
         setSize(800,600);
         setVisible(true);
 
@@ -57,10 +67,10 @@ public class Assign08_6506021610029 extends JFrame implements ActionListener{
         panelG1.setPreferredSize(new Dimension(770, 40));
         panelG1.setBorder(new LineBorder(Color.RED, 1));
         panelG1.add(Play);panelG1.add(Stop);panelG1.add(label1);panelG1.add(toRight);panelG1.add(toLeft);
-        panelG1.add(toTop);panelG1.add(toDown);panelG1.add(label2);panelG1.add(Exit);
+        panelG1.add(toDown);panelG1.add(toTop);panelG1.add(label2);panelG1.add(Exit);
         c.add(panelG1);
     }
-    
+
     private void ballzone(Container c) {
         panelG2 = new JPanel();
         panelG2.setPreferredSize(new Dimension(625, 450));
@@ -105,22 +115,75 @@ public class Assign08_6506021610029 extends JFrame implements ActionListener{
         c.add(panelG3);
     }
 
-    @Override
+    private void description(Container c) {
+        Text = new JLabel(mBall.toString());
+        panelG4 = new JPanel();
+        panelG4.setPreferredSize(new Dimension(770, 40));
+        panelG4.add(Text);
+        c.add(panelG4);
+    }
+
     public void actionPerformed(ActionEvent e){
     
-        if(e.getSource() == Play)
+        if(e.getSource() == Play){
             swTimer.start();
-        else if(e.getSource() == Stop)
+            start = true;
+        }
+        else if(e.getSource() == Stop){
             swTimer.stop();
-        mBall.setX(mBall.getX() + mBall.getSpeed());
-        if(mBall.getX() == 800)
-            mBall.setX(0);
+            start = false;
+        }
+        else if(e.getSource() == toRight)
+            mBall.setDirection(0);
+        else if(e.getSource() == toLeft)
+            mBall.setDirection(1);
+        else if(e.getSource() == toDown)
+            mBall.setDirection(2);
+        else if(e.getSource() == toTop)
+            mBall.setDirection(3);
+        else if(e.getSource() == Exit)
+            System.exit(0);
+
+        if(start){
+            if(mBall.getDirection() == 0) mBall.setX(mBall.getX() + mBall.getSpeed());
+            else if(mBall.getDirection() == 1) mBall.setX(mBall.getX() - mBall.getSpeed());
+            else if(mBall.getDirection() == 2) mBall.setY(mBall.getY() + mBall.getSpeed());
+            else if(mBall.getDirection() == 3) mBall.setY(mBall.getY() - mBall.getSpeed());
+        }
+
+        if(mBall.getX() >= 630)
+            mBall.setX(-5);
+        else if(mBall.getX() <= -6)
+            mBall.setX(629);
+        else if(mBall.getY() >= 455)
+            mBall.setY(-5);
+        else if(mBall.getY() <= -6)
+            mBall.setY(454);     
+            
+        if(e.getSource() == SpeedUp)
+            if(mBall.getSpeed() < 5)
+                mBall.setSpeed(mBall.getSpeed() + 1);
+        if(e.getSource() == SpeedDown)
+            if(mBall.getSpeed() > 1)
+                mBall.setSpeed(mBall.getSpeed() - 1);
+
+        if(e.getSource() == CBlack)
+            mBall.setColor(Color.black);
+        else if(e.getSource() == CRed)
+            mBall.setColor(Color.red);
+        else if(e.getSource() == CGreen)
+            mBall.setColor(Color.green);
+        else if(e.getSource() == CBlue)
+            mBall.setColor(Color.blue);
+
+        repaint();
     }
 
     public void paint(Graphics g){
         super.paint(g);
         mBall.paint(panelG2.getGraphics());
-        repaint();
+        mBall.getColor();
+        Text.setText(mBall.toString());
     }
 
     public static void main(String[] args) {
