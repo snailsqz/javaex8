@@ -1,3 +1,10 @@
+/*
+ * Id   : 65-060216-1002-9
+ * Name : Pawee Indulakshana
+ * Room : IT-1RA
+ * File Name : Ball.java
+ */
+
 import java.awt.*;
 import javax.swing.JFrame;
 
@@ -63,7 +70,7 @@ public class Ball extends JFrame{
     }
 
     public void paint(Graphics g) {
-        super.paint(g);
+        g.setColor(getColor());
         g.fillOval(getX(), getY(), getDiameter(), getDiameter());
     }
 
